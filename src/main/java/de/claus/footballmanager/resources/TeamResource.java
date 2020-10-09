@@ -29,4 +29,12 @@ public class TeamResource {
     				.build();
 	   	}
 	   	
+	   	@GET
+	    @Produces(MediaType.APPLICATION_JSON)
+	    public Response getTeams() {
+	   		return Response
+    				.ok()//TODO Team zurueckgeben
+    				.build();
+	   	}
+	   	
 }
