@@ -4,6 +4,8 @@
         <feature>jaxrs-2.1</feature>
         <feature>jsonp-1.1</feature>
         <feature>cdi-2.0</feature>
+        <feature>jpa-2.2</feature>
+        <feature>jsonb-1.0</feature>
         <feature>mpMetrics-2.3</feature>
         <feature>mpHealth-2.2</feature>
         <feature>mpConfig-1.4</feature>
@@ -14,10 +16,21 @@
 
     <webApplication location="footballmanager.war" contextRoot="/" />
     <mpMetrics authentication="false"/>
-
-
+    <dataSource id="footballmanager" jndiName="jdbc/footballmanager" type="javax.sql.ConnectionPoolDataSource">
+             <jdbcDriver
+                    javax.sql.ConnectionPoolDataSource="org.h2.jdbcx.JdbcDataSource"
+                    javax.sql.DataSource="org.h2.jdbcx.JdbcDataSource"
+                    javax.sql.XADataSource="org.h2.jdbcx.JdbcDataSource"
+                    libraryRef="SharedLibrary_H2" />
+                    <properties URL="jdbc:h2:file:///D:/Entwicklung/H2/REST/db/footballmanager" password="" user="sa" />
+             <!--properties URL="jdbc:h2:mem:" password="" user="sa" /-->
+       </dataSource>
+       <library id="SharedLibrary_H2">
+             <!--  >fileset dir="${shared.resource.dir}/" id="Fileset_H2" /-->
+      		<fileset dir="D:/WKS/Git/footballmanager/Target/footballmanager/WEB-INF/lib" id="Fileset_H2" />
+       </library>
     <httpEndpoint host="*" httpPort="${default.http.port}"
         httpsPort="${default.https.port}" id="defaultHttpEndpoint"/>
-
+  
     <variable name="io_openliberty_guides_system_inMaintenance" value="false"/>
 </server>

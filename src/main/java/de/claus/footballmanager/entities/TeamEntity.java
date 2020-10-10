@@ -1,14 +1,35 @@
 package de.claus.footballmanager.entities;
 
-import java.util.function.Function;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
-import de.claus.footballmanager.model.Team;
+@Entity
+@Table(name = "TATEAM")
+@NamedQuery(name= "TeamEntity.findAll", query = "select e from TATEAM e")
+public class TeamEntity{
+	
+	@Id
+	@GeneratedValue
+	private int id;
+	private String name;
+	
+	public String getName() {
+		return name;
+	}
 
-public class TeamEntity implements Function<TeamEntity,Team>{
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public int getId() {
+		return id;
+	}
 
-	public Team apply(TeamEntity t) {
-		// TODO Auto-generated method stub
-		return null;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

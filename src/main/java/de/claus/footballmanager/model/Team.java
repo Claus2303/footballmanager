@@ -2,12 +2,18 @@ package de.claus.footballmanager.model;
 
 import java.util.List;
 
+import de.claus.footballmanager.entities.TeamEntity;
+
 public class Team {
 	private int id;
 	private String name;
 	private List<TeamMember> teammembers;
 	private List<Appointment> appointments;
 
+	public Team(TeamEntity entity) {
+		this.name = entity.getName();
+	}
+	
 	public int getId() {
 		return id;
 	}

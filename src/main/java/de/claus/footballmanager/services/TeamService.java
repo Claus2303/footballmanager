@@ -1,5 +1,8 @@
 package de.claus.footballmanager.services;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -14,10 +17,22 @@ public class TeamService {
 	@Inject
 	private TeamRepository<TeamEntity> teamrepository;
 	
-	public Team createTeam(Team team){
+	public Team createTeam(String name){
 		//Validate.notNull(Team team,"Team must not be null");
 		
-		TeamEntity e = teamrepository.createTeam(team.getName());
-		return e.apply(e);
+		TeamEntity e = teamrepository.createTeam(name);
+		return new Team(e);
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public List<Team> getAllTeams(){
+	
+		List<Team> dtolist = teamrepository.getTeams().stream()
+		.map(Team::new) //--> das geht wegen dem Konstruktor PartnerDTO(PartnerEntity p)
+		.collect(Collectors.toList());
+		
+		return dtolist;
 	}
 }
