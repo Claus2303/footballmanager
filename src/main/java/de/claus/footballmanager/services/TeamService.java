@@ -17,10 +17,10 @@ public class TeamService {
 	@Inject
 	private TeamRepository<TeamEntity> teamrepository;
 	
-	public Team createTeam(String name){
+	public Team createTeam(int clubid, String name){
 		//Validate.notNull(Team team,"Team must not be null");
 		
-		TeamEntity e = teamrepository.createTeam(name);
+		TeamEntity e = teamrepository.createTeam(clubid, name);
 		return new Team(e);
 	}
 	/**

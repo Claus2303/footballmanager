@@ -9,7 +9,7 @@ public interface TeamRepository <T>{
 	 * @param name
 	 * @return
 	 */
-	public T createTeam(String name);
+	public T createTeam(int clubid, String name);
 	/**
 	 * Gibt alle Teams aus
 	 * @return

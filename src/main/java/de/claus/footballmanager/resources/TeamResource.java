@@ -31,8 +31,8 @@ public class TeamResource {
 	   	}
 	   	@POST
 	   	@Produces(MediaType.APPLICATION_JSON)
-	   	public Response createTeam(@QueryParam ("name") String name) {
-	   		Team team = teamservice.createTeam(name);
+	   	public Response createTeam(@QueryParam ("clubid") int clubid, @QueryParam ("name") String name) {
+	   		Team team = teamservice.createTeam(clubid, name);
 	   		return Response
     				.ok(team)//TODO Team erstellen
     				.build();
