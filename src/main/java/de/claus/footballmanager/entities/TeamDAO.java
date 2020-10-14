@@ -28,7 +28,7 @@ public class TeamDAO implements TeamRepository<TeamEntity>{
 	 * Gibt alle Mannschaften zurück
 	 */
 	public List<TeamEntity> getTeams() {
-		TypedQuery<TeamEntity> query = em.createQuery("TeamEntity.findAll",TeamEntity.class);
+		TypedQuery<TeamEntity> query = em.createNamedQuery("TeamEntity.findAll",TeamEntity.class);
 		return query.getResultList();
 	}
 }

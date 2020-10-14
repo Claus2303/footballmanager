@@ -7,8 +7,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TATEAM")
-@NamedQuery(name= "TeamEntity.findAll", query = "select e from TATEAM e")
+@NamedQuery(name= "TeamEntity.findAll", query = "SELECT t FROM TeamEntity t")
 public class TeamEntity{
 	
 	@Id
