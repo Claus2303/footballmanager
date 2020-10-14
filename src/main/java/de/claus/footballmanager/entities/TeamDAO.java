@@ -17,11 +17,19 @@ public class TeamDAO implements TeamRepository<TeamEntity>{
 	/**
 	 * Erzeugt ein Team. Die ID dazu wird von der DB generiert
 	 */
-	public TeamEntity createTeam(String name) {
-		TeamEntity entity = new TeamEntity();
-		entity.setName(name);
-		em.persist(entity);
-
+	public TeamEntity createTeam(int clubid, String name) {
+		TeamEntity entity = null;
+		ClubEntity clubentity = em.find(ClubEntity.class, clubid);
+		if(clubentity != null) {
+			em.getTransaction().begin();
+			entity = new TeamEntity();
+			entity.setName(name);
+			em.persist(entity);
+			
+			clubentity.getTeams().add(entity);
+			em.persist(clubentity);
+			em.getTransaction().commit();
+		}
 		return entity;
 	}
 	/**
